@@ -86,14 +86,14 @@ const FaqModal: React.FC<FaqModalProps> = ({ onClose }) => {
           onClick={(e) => e.stopPropagation()}
         >
           {/* Header */}
-          <div className="flex items-center justify-center px-7 py-4">
-            <h2 className="font-Sora text-3xl font-semibold text-white">
+          <div className="flex items-center justify-center px-3 py-2 md:px-7 md:py-4">
+            <h2 className="font-Sora text-lg md:text-3xl font-semibold text-white text-center">
               Frequently Asked <span className="text-[#F7CA15]">Questions</span>
             </h2>
           </div>
           <button
             onClick={onClose}
-            className="absolute top-3 left-3 px-2 border-2 border-[#363636] rounded-sm text-[#363636]/70 hover:text-[#363636] text-2xl font-bold"
+            className="absolute top-3 left-3 px-1 md:px-2 border-2 border-[#363636] rounded-sm text-[#363636]/70 hover:text-[#363636] md:text-2xl font-bold"
           >
             ✕
           </button>
@@ -107,13 +107,13 @@ const FaqModal: React.FC<FaqModalProps> = ({ onClose }) => {
                 onClick={() => toggleFaq(index)}
               >
                 <div className="flex items-start gap-2">
-                  <span className="font-Nexa font-bold text-2xl text-[#F7CA15]">
+                  <span className="font-Nexa font-bold text-lg md:text-2xl text-[#F7CA15]">
                     Q{index + 1}.
                   </span>
-                  <p className="font-Nexa font-bold text-2xl text-white">{faq.question}</p>{" "}
+                  <p className="font-Nexa font-bold text-lg md:text-2xl text-white">{faq.question}</p>{" "}
                 </div>
                 {activeIndex === index && (
-                  <p className="font-Nexa font-normal text-base mt-2 text-[#FFFFFF80] leading-relaxed">
+                  <p className="font-Nexa font-normal text-sm md:text-base mt-2 text-[#FFFFFF80] leading-relaxed">
                     {faq.answer}
                   </p>
                 )}

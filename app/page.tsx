@@ -4,7 +4,7 @@ import Hero from "./(home)/hero";
 const Page = () => {
   return (
     <>
-      <div className="fixed left-0 right-0">
+      <div className="fixed left-0 right-0 z-50">
         <Navbar />
       </div>
       <Hero />
