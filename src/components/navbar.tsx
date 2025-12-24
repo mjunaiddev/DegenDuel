@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useState } from "react";
 import Image from "next/image";
 import Logo from "@assets/logo.png";
@@ -8,6 +8,7 @@ import BinanceIcon from "@assets/binance-icon.png";
 import NotebookIcon from "@assets/notebook-icon.png";
 import EtherscanIcon from "@assets/etherscan-icon.png";
 import { HiMenu, HiX } from "react-icons/hi";
+import Link from "next/link";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -21,12 +22,12 @@ const Navbar = () => {
   ];
 
   return (
-    <div className="bg-[#161616] w-full border-b-2 border-[#363636] fixed top-0 z-40]">
+    <div className="bg-[#161616] w-full px-2 border-b-2 border-[#363636] fixed top-0 z-40]">
       <div className="container mx-auto flex items-center justify-between h-[100px] px-4 lg:px-0">
         {/* Logo */}
-        <div className="flex items-center">
+        <Link href={"/"} className="flex items-center cursor-pointer">
           <Image src={Logo} alt="Logo" className="w-32 md:w-44 lg:w-auto" />
-        </div>
+        </Link>
 
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-6">
@@ -40,9 +41,11 @@ const Navbar = () => {
               </div>
             ))}
           </div>
-          <button className="px-6 lg:px-9 py-2 md:py-3 bg-[#F7CA15] rounded-sm font-Nexa font-bold text-lg lg:text-2xl">
-            Launch App
-          </button>
+          <Link href={"/dapp"}>
+            <button className="px-6 lg:px-9 py-2 md:py-3 bg-[#F7CA15] rounded-sm font-Nexa font-bold text-lg lg:text-2xl">
+              Launch App
+            </button>
+          </Link>
         </div>
 
         {/* Mobile Menu Button */}
@@ -70,9 +73,11 @@ const Navbar = () => {
               </div>
             ))}
           </div>
-          <button className="w-[250px] mx-auto py-2 bg-[#F7CA15] rounded-sm font-Nexa font-bold text-xl">
-            Launch App
-          </button>
+          <Link href={"/dapp"}>
+            <button className="w-[250px] mx-auto py-2 bg-[#F7CA15] rounded-sm font-Nexa font-bold text-xl">
+              Launch App
+            </button>
+          </Link>
         </div>
       )}
     </div>

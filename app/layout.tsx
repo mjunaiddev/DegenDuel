@@ -1,13 +1,21 @@
 import type { Metadata } from "next";
-import { Sora } from "next/font/google";
+import { Sora, Manrope } from "next/font/google";
 import "./globals.css";
 import AppKitProvider from "@/src/components/appkit";
 import { Toaster } from "react-hot-toast";
 
-// Import Sora font from Google Fonts
+// Sora font (optional – for headings, accents)
 const sora = Sora({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"], // Adjust weights as needed
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-sora",
+});
+
+// Manrope font (main font)
+const manrope = Manrope({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800"],
+  variable: "--font-manrope",
 });
 
 export const metadata: Metadata = {
@@ -17,12 +25,14 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
-      <body className={sora.className}>
+      <body
+        className={`${manrope.className} ${sora.variable} ${manrope.variable}`}
+      >
         <AppKitProvider>
           <Toaster />
           {children}

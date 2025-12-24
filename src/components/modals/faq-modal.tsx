@@ -86,7 +86,7 @@ const FaqModal: React.FC<FaqModalProps> = ({ onClose }) => {
           onClick={(e) => e.stopPropagation()}
         >
           {/* Header */}
-          <div className="flex items-center justify-center px-3 py-2 md:px-7 md:py-4">
+          <div className="flex items-center justify-center px-4 py-2 md:px-7 md:py-4">
             <h2 className="font-Sora text-lg md:text-3xl font-semibold text-white text-center">
               Frequently Asked <span className="text-[#F7CA15]">Questions</span>
             </h2>
@@ -110,7 +110,9 @@ const FaqModal: React.FC<FaqModalProps> = ({ onClose }) => {
                   <span className="font-Nexa font-bold text-lg md:text-2xl text-[#F7CA15]">
                     Q{index + 1}.
                   </span>
-                  <p className="font-Nexa font-bold text-lg md:text-2xl text-white">{faq.question}</p>{" "}
+                  <p className="font-Nexa font-bold text-lg md:text-2xl text-white">
+                    {faq.question}
+                  </p>{" "}
                 </div>
                 {activeIndex === index && (
                   <p className="font-Nexa font-normal text-sm md:text-base mt-2 text-[#FFFFFF80] leading-relaxed">

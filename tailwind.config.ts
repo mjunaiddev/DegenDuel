@@ -37,6 +37,7 @@ const config: Config = {
         Sora: ["Sora", "sans-serif"], // Sora font
         AeionMono: ["AeionMono", "sans-serif"],
         AeionMonoSemiLight: ["AeionMonoSemiLight", "sans-serif"],
+        Manrope: ["Manrope", "sans-serif"],
       },
       container: {
         padding: "20px",
