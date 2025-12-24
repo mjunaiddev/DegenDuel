@@ -6,6 +6,16 @@
   font-family: Nexa;
   src: url("/fonts/NexaLight.otf");
 }
+ 
+@font-face {
+  font-family: AeionMono;
+  src: url("/fonts/AeionMonoVariableTest-Regular.otf");
+}
+
+@font-face {
+  font-family: AeionMonoSemiLight;
+  src: url("/fonts/AeionMonoVariableTest-SemiLight.otf");
+}
 
 .custom-scroll::-webkit-scrollbar {
   width: 6px;

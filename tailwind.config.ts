@@ -35,6 +35,8 @@ const config: Config = {
       fontFamily: {
         Nexa: ["Nexa", "sans-serif"], // Your custom font Nexa
         Sora: ["Sora", "sans-serif"], // Sora font
+        AeionMono: ["AeionMono", "sans-serif"],
+        AeionMonoSemiLight: ["AeionMonoSemiLight", "sans-serif"],
       },
       container: {
         padding: "20px",
