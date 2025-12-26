@@ -38,6 +38,7 @@ const config: Config = {
         AeionMono: ["AeionMono", "sans-serif"],
         AeionMonoSemiLight: ["AeionMonoSemiLight", "sans-serif"],
         Manrope: ["Manrope", "sans-serif"],
+        Exo: ["Exo", "sans-serif"],
       },
       container: {
         padding: "20px",

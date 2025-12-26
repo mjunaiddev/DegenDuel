@@ -77,7 +77,7 @@ const FaqModal: React.FC<FaqModalProps> = ({ onClose }) => {
   return (
     <>
       {/* Backdrop */}
-      <div className="fixed inset-0 z-40" onClick={onClose} />
+      <div className="fixed inset-0 z-40" />
 
       {/* Modal */}
       <div className="fixed inset-0 z-50 flex items-center justify-center px-4">

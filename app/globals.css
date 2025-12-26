@@ -17,6 +17,11 @@
   src: url("/fonts/AeionMonoVariableTest-SemiLight.otf");
 }
 
+@font-face {
+  font-family: Exo;
+  src: url("/fonts/Exo-Regular.otf");
+}
+
 .custom-scroll::-webkit-scrollbar {
   width: 6px;
 }

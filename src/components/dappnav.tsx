@@ -10,7 +10,7 @@ const Dappnav = () => {
         <Link href={"/"}>
         <Image src={DappLogo} alt="Dapp Logo"/>
         </Link>
-       <Link href={"/dapp/active-duels"}> <button className="bg-[#F7CA15] rounded-[10px] px-8 py-2 md:px-16 md:py-3 font-Manrope font-bold text-base">Wallet</button></Link>
+       <Link href={"/dapp/duels"}> <button className="bg-[#F7CA15] rounded-[10px] px-8 py-2 md:px-16 md:py-3 font-Manrope font-bold text-base">Wallet</button></Link>
       </div>
     </div>
   );
