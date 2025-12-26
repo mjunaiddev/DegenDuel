@@ -86,7 +86,7 @@ const FaqModal: React.FC<FaqModalProps> = ({ onClose }) => {
           onClick={(e) => e.stopPropagation()}
         >
           {/* Header */}
-          <div className="flex items-center justify-center px-4 py-2 md:px-7 md:py-4">
+          <div className="flex items-center justify-center py-2 px-12 md:py-4">
             <h2 className="font-Sora text-lg md:text-3xl font-semibold text-white text-center">
               Frequently Asked <span className="text-[#F7CA15]">Questions</span>
             </h2>

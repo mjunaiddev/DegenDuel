@@ -62,7 +62,7 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div className="md:hidden bg-[#161616] border-t-2 border-[#363636] w-full px-4 py-4 flex flex-col gap-4">
+        <div className="md:hidden bg-[#161616] border-t-2 border-[#363636] w-full px-4 py-4 flex flex-col gap-4 items-center">
           <div className="flex flex-wrap gap-4 justify-center">
             {icons.map((item, index) => (
               <div
