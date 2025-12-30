@@ -85,7 +85,7 @@ const MyTimer = ({ expiryTimestamp }: TimerProps) => {
 export default function Timer({ duration }: TimerProps2) {
   const time = new Date();
   time.setSeconds(time.getSeconds() + duration);
-
+console.log("duraton",duration)
   return (
     <div className="flex items-center justify-center ">
       <MyTimer expiryTimestamp={time} />

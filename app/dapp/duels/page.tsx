@@ -29,7 +29,7 @@ const Page = () => {
       direction: "up",
       createdPrice: 58600,
       currentPrice: 58910,
-      duration: 3600,
+      duration: 0,
       status: "ended" as DuelStatus,
     },
     {
@@ -38,26 +38,26 @@ const Page = () => {
       direction: "up",
       createdPrice: 58600,
       currentPrice: 58910,
-      duration: 3600,
-      status: "active" as DuelStatus,
-    },
-    {
-      asset: "BTC",
-      assetIcon: Bitcoin,
-      direction: "up",
-      createdPrice: 58600,
-      currentPrice: 58910,
-      duration: 3600,
+      duration: 0,
       status: "ended" as DuelStatus,
     },
     {
       asset: "BTC",
       assetIcon: Bitcoin,
-      direction: "up",
+      direction: "down",
       createdPrice: 58600,
       currentPrice: 58910,
-      duration: 3600,
-      status: "active" as DuelStatus,
+      duration: 0,
+      status: "ended" as DuelStatus,
+    },
+    {
+      asset: "BTC",
+      assetIcon: Bitcoin,
+      direction: "down",
+      createdPrice: 58600,
+      currentPrice: 58910,
+      duration: 0,
+      status: "ended" as DuelStatus,
     },
     {
       asset: "BTC",
@@ -74,17 +74,8 @@ const Page = () => {
       direction: "down",
       createdPrice: 58600,
       currentPrice: 58910,
-      duration: 3600,
+      duration: 1600,
       status: "active" as DuelStatus,
-    },
-    {
-      asset: "BTC",
-      assetIcon: Bitcoin,
-      direction: "up",
-      createdPrice: 58600,
-      currentPrice: 58910,
-      duration: 0,
-      status: "ended" as DuelStatus,
     },
     {
       asset: "BTC",
@@ -98,11 +89,20 @@ const Page = () => {
     {
       asset: "BTC",
       assetIcon: Bitcoin,
+      direction: "down",
+      createdPrice: 58600,
+      currentPrice: 58910,
+      duration: 4000,
+      status: "active" as DuelStatus,
+    },
+    {
+      asset: "BTC",
+      assetIcon: Bitcoin,
       direction: "up",
       createdPrice: 58600,
       currentPrice: 58910,
-      duration: 0,
-      status: "ended" as DuelStatus,
+      duration: 3000,
+      status: "active" as DuelStatus,
     },
   ];
   const [duels, setDuels] = useState<DuelCardProps[]>(initialDuels);
@@ -153,7 +153,7 @@ const Page = () => {
           {filteredDuels.length > 0 ? (
             filteredDuels.map((duel, index) => (
               <DuelCard
-                key={index}
+                key={`${duel.asset}-${duel.status}-${index}`}
                 {...duel}
                 onDetail={() => {
                   setOpenStatsModal(true);
@@ -165,7 +165,7 @@ const Page = () => {
               />
             ))
           ) : (
-            <div className="col-span-full  items-center">
+            <div className="col-span-full flex items-center justify-center min-h-[60vh]">
               <Image src={NodataImg} alt="nodata image" />
             </div>
           )}
