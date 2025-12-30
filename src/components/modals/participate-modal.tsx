@@ -28,7 +28,7 @@ const ParticipateModal: React.FC<ParticipateModalProps> = ({
 
   return (
     <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50">
-      <div className="relative w-[420px] bg-[#1C1C1C] border-2 border-[#36363699] rounded-lg p-6 text-white">
+      <div className="relative w-72 md:w-[420px] bg-[#1C1C1C] border-2 border-[#36363699] rounded-lg p-6 text-white">
         {/* Close */}
         <button
           onClick={onClose}
@@ -38,7 +38,7 @@ const ParticipateModal: React.FC<ParticipateModalProps> = ({
         </button>
 
         {/* Title */}
-        <h2 className="font-Manrope font-bold text-lg mb-4">
+        <h2 className="font-Manrope font-bold text-base md:text-lg mb-4">
           Select {isFor ? "Your Vote" : "Direction/Sentiment"}
         </h2>
 

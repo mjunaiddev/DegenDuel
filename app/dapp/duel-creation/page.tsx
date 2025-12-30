@@ -22,8 +22,8 @@ const Page = () => {
   const [prediction, setPrediction] = useState(2);
   const [duration, setDuration] = useState(30);
 
-  const [participate, setParticipate] = useState(false);
-  const [stake, setStake] = useState("");
+  const [participate, setParticipate] = useState<boolean>(false);
+  const [stake, setStake] = useState<number|string>("");
   const [duelAmount, setDuelAmount] = useState("");
 
   const formValid =
@@ -39,21 +39,21 @@ const Page = () => {
   return (
     <div className="bg-HeroBg bg-cover min-h-screen">
       <div className="container py-40 text-center">
-        <h1 className="pb-5 font-Sora font-semibold text-[40px] text-white">
+        <h1 className="pb-5 font-Sora font-semibold text-2xl md:text-[40px] text-white">
           Create or <span className="text-[#F7CA15]">Join Duels</span>
         </h1>
 
         {/* Duel Creation Card */}
-        <form className="flex flex-col gap-5 w-[610px] mx-auto bg-[#1C1C1C] border-2 border-[#36363699] rounded-[10px] px-10 py-8 text-left">
+        <form className="flex flex-col gap-5 md:w-[610px] mx-auto bg-[#1C1C1C] border-2 border-[#36363699] rounded-[10px] px-5 py-4 md:px-10 md:py-8 text-left">
           <div className="flex flex-col gap-2 relative">
-            <label className="font-Manrope font-semibold text-xl text-white">
+            <label className="font-Manrope font-semibold text-base md:text-xl text-white">
               Select Crypto For Duel
             </label>
 
             <button
               type="button"
               onClick={() => setOpenCrypto(!openCrypto)}
-              className="w-full border border-[#F7CA15] rounded-[10px] p-5 flex justify-between items-center"
+              className="w-full border border-[#F7CA15] rounded-[10px] p-3 md:p-5 flex justify-between items-center"
             >
               <div className="flex items-center gap-3">
                 <Image
@@ -62,7 +62,7 @@ const Page = () => {
                   width={24}
                   height={24}
                 />
-                <span className="font-Manrope font-semibold text-xl text-white">
+                <span className="font-Manrope font-semibold text-base md:text-xl text-white">
                   {crypto}
                 </span>
               </div>
@@ -96,7 +96,7 @@ const Page = () => {
 
           {/* Direction */}
           <div className="flex flex-col gap-2">
-            <label className="flex gap-2 items-center font-Manrope font-semibold text-xl text-white">
+            <label className="flex gap-2 items-center font-Manrope font-semibold text-base md:text-xl text-white">
               Choose Direction / Sentiment{" "}
               <BsInfoCircle className="text-[#868686]" />
             </label>
@@ -105,33 +105,33 @@ const Page = () => {
               <button
                 type="button"
                 onClick={() => setDirection("up")}
-                className={`flex-1 flex items-center justify-between px-5 py-3 rounded-[10px] font-Manrope font-extrabold text-xl bg-[#02BA4530] ${
+                className={`flex-1 flex items-center justify-between px-5 py-3 rounded-[10px] font-Manrope font-extrabold text-base md:text-xl bg-[#02BA4530] ${
                   direction === "up"
                     ? "bg-[#02BA45] text-white"
                     : "text-[#02BA4580]"
                 }`}
               >
-                Up <MdOutlineKeyboardDoubleArrowUp className="text-4xl" />
+                Up <MdOutlineKeyboardDoubleArrowUp className="text-2xl md:text-4xl" />
               </button>
 
               <button
                 type="button"
                 onClick={() => setDirection("down")}
-                className={`flex-1 flex items-center justify-between px-5 py-3 rounded-[10px] font-Manrope font-extrabold text-xl bg-[#CF37391A] ${
+                className={`flex-1 flex items-center justify-between px-5 py-3 rounded-[10px] font-Manrope font-extrabold text-base md:text-xl bg-[#CF37391A] ${
                   direction === "down"
                     ? "bg-[#CF3739] text-white"
                     : "text-[#CF373980]"
                 }`}
               >
-                Down <MdOutlineKeyboardDoubleArrowDown className="text-4xl" />
+                Down <MdOutlineKeyboardDoubleArrowDown className="text-2xl md:text-4xl" />
               </button>
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid md:grid-cols-2 gap-4">
             {/* Prediction */}
             <div className="flex flex-col gap-2">
-              <label className="flex gap-2 items-center font-Manrope font-semibold text-xl text-white">
+              <label className="flex gap-2 items-center font-Manrope font-semibold text-base md:text-xl text-white">
                 Prediction % <BsInfoCircle className="text-[#868686]" />
               </label>
               <div className="relative">
@@ -139,20 +139,20 @@ const Page = () => {
                   type="number"
                   value={prediction}
                   onChange={(e) => setPrediction(+e.target.value)}
-                  className="w-full bg-transparent border border-[#FFFFFF33] rounded-[10px] p-5 font-Manrope font-semibold text-xl text-[#FFFFFF80] appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                  className="w-full bg-transparent border border-[#FFFFFF33] rounded-[10px] p-2 md:p-5 font-Manrope font-semibold text-base md:text-xl text-[#FFFFFF80] appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
                 />
                 <div className="absolute right-3 top-1/2 -translate-y-1/2 flex flex-col gap-1">
                   <button
                     type="button"
                     onClick={() => setPrediction((p) => p + 1)}
                   >
-                    <FiChevronUp className="rounded-md w-6 h-6 bg-[#FFFFFF1A] text-white" />
+                    <FiChevronUp className="rounded-md md:w-6 md:h-6 bg-[#FFFFFF1A] text-white" />
                   </button>
                   <button
                     type="button"
                     onClick={() => setPrediction((p) => Math.max(0, p - 1))}
                   >
-                    <FiChevronDown className="rounded-md w-6 h-6 bg-[#FFFFFF1A] text-white" />
+                    <FiChevronDown className="rounded-md md:w-6 md:h-6 bg-[#FFFFFF1A] text-white" />
                   </button>
                 </div>
               </div>
@@ -160,7 +160,7 @@ const Page = () => {
 
             {/* Duration */}
             <div className="flex flex-col gap-2">
-              <label className="flex gap-2 items-center font-Manrope font-semibold text-xl text-white">
+              <label className="flex gap-2 items-center font-Manrope font-semibold text-base md:text-xl text-white">
                 Duration <BsInfoCircle className="text-[#868686]" />
               </label>
               <div className="relative">
@@ -168,26 +168,26 @@ const Page = () => {
                   type="text"
                   value={`${duration} Minutes`}
                   readOnly
-                  className="w-full bg-transparent border border-[#FFFFFF33] rounded-[10px] p-5 font-Manrope font-semibold text-xl text-[#FFFFFF80]"
+                  className="w-full bg-transparent border border-[#FFFFFF33] rounded-[10px] p-2 md:p-5 font-Manrope font-semibold text-base md:text-xl text-[#FFFFFF80]"
                 />
                 <div className="absolute right-3 top-1/2 -translate-y-1/2 flex flex-col gap-1">
                   <button
                     type="button"
                     onClick={() => setDuration((d) => d + 5)}
                   >
-                    <FiChevronUp className="rounded-md w-6 h-6 bg-[#FFFFFF1A] text-white" />
+                    <FiChevronUp className="rounded-md md:w-6 md:h-6 bg-[#FFFFFF1A] text-white" />
                   </button>
                   <button
                     type="button"
                     onClick={() => setDuration((d) => Math.max(5, d - 5))}
                   >
-                    <FiChevronDown className="rounded-md w-6 h-6 bg-[#FFFFFF1A] text-white" />
+                    <FiChevronDown className="rounded-md md:w-6 md:h-6 bg-[#FFFFFF1A] text-white" />
                   </button>
                 </div>
               </div>
             </div>
           </div>
-          <label className="flex items-center gap-2 font-Manrope font-medium text-base text-white  cursor-pointer">
+          <label className="flex items-center gap-2 font-Manrope font-medium text-sm md:text-base text-white  cursor-pointer">
             <input
               type="checkbox"
               checked={participate}
@@ -201,7 +201,7 @@ const Page = () => {
           {participate && (
             <>
               <div className="flex flex-col gap-2">
-                <label className="font-Manrope font-semibold text-xl text-white">
+                <label className="font-Manrope font-semibold text-base md:text-xl text-white">
                   Select Your Vote
                 </label>
 
@@ -209,33 +209,33 @@ const Page = () => {
                   <button
                     type="button"
                     onClick={() => setVote("for")}
-                    className={`flex-1 flex items-center justify-between px-5 py-3 rounded-[10px] font-Manrope font-extrabold text-xl bg-[#02BA4530] ${
+                    className={`flex-1 flex items-center justify-between px-5 py-3 rounded-[10px] font-Manrope font-extrabold text-base md:text-xl bg-[#02BA4530] ${
                       vote === "for"
                         ? "bg-[#02BA45] text-white"
                         : "text-[#02BA4580]"
                     }`}
                   >
-                    For <MdOutlineKeyboardDoubleArrowUp className="text-4xl" />
+                    For <MdOutlineKeyboardDoubleArrowUp className="text-2xl md:text-4xl" />
                   </button>
 
                   <button
                     type="button"
                     onClick={() => setVote("against")}
-                    className={`flex-1 flex items-center justify-between px-5 py-3 rounded-[10px] font-Manrope font-extrabold text-xl bg-[#CF37391A] ${
+                    className={`flex-1 flex items-center justify-between px-5 py-3 rounded-[10px] font-Manrope font-extrabold text-base md:text-xl bg-[#CF37391A] ${
                       vote === "against"
                         ? "bg-[#CF3739] text-white"
                         : "text-[#CF373980]"
                     }`}
                   >
                     Against{" "}
-                    <MdOutlineKeyboardDoubleArrowDown className="text-4xl" />
+                    <MdOutlineKeyboardDoubleArrowDown className="text-2xl md:text-4xl" />
                   </button>
                 </div>
               </div>
-              <div className="grid grid-cols-2 gap-4 items-center">
+              <div className="grid md:grid-cols-2 gap-4 items-center">
                 {/* stake */}
                 <div className="flex flex-col gap-2">
-                  <label className="flex justify-between items-center font-Manrope font-semibold text-xl text-white">
+                  <label className="flex justify-between items-center font-Manrope font-semibold text-base md:text-xl text-white">
                     Stake With <span className="text-[#53AE94]">253 USDT</span>
                   </label>
                   <div className="relative">
@@ -245,7 +245,7 @@ const Page = () => {
                       placeholder="0.00 USDT"
                       value={stake}
                       onChange={(e) => setStake(e.target.value)}
-                      className="w-full bg-transparent border border-[#FFFFFF33] rounded-[10px] p-5 font-Manrope font-semibold text-xl text-[#FFFFFF80] appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                      className="w-full bg-transparent border border-[#FFFFFF33] rounded-[10px] p-5 font-Manrope font-semibold text-base md:text-xl text-[#FFFFFF80] appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
                     />
                     <div className="absolute right-3 top-1/2 -translate-y-1/2 ">
                       <Image src={StakeLogo} alt="duel logo" />
@@ -255,7 +255,7 @@ const Page = () => {
 
                 {/* Duel */}
                 <div className="flex flex-col gap-2">
-                  <label className="flex items-center justify-end font-Manrope font-bold text-base text-[#F7CA15]">
+                  <label className="flex items-center justify-end font-Manrope font-bold text-base md:text-xl text-[#F7CA15]">
                     1443 DUEL
                   </label>
                   <div className="relative">
@@ -265,7 +265,7 @@ const Page = () => {
                       placeholder="0.00 DUEL"
                       value={duelAmount}
                       onChange={(e) => setDuelAmount(e.target.value)}
-                      className="w-full bg-transparent border border-[#FFFFFF33] rounded-[10px] p-5 font-Manrope font-semibold text-xl text-[#FFFFFF80] appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                      className="w-full bg-transparent border border-[#FFFFFF33] rounded-[10px] p-5 font-Manrope font-semibold text-base md:text-xl text-[#FFFFFF80] appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
                     />
                     <div className="absolute right-3 top-1/2 -translate-y-1/2 ">
                       <Image src={DuelLogo} alt="duel logo" />

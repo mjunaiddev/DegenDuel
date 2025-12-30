@@ -22,14 +22,14 @@ const Page = () => {
     }`;
 
   // ✅ All duels in one place
-  const duels: DuelCardProps[] = [
+  const initialDuels: DuelCardProps[] = [
     {
       asset: "BTC",
       assetIcon: Bitcoin,
       direction: "up",
       createdPrice: 58600,
       currentPrice: 58910,
-      endTime: "2025-01-05T18:30:00Z",
+      duration: 3600,
       status: "ended" as DuelStatus,
     },
     {
@@ -38,7 +38,7 @@ const Page = () => {
       direction: "up",
       createdPrice: 58600,
       currentPrice: 58910,
-      endTime: "2025-01-05T18:30:00Z",
+      duration: 3600,
       status: "active" as DuelStatus,
     },
     {
@@ -47,7 +47,7 @@ const Page = () => {
       direction: "up",
       createdPrice: 58600,
       currentPrice: 58910,
-      endTime: "2025-01-05T18:30:00Z",
+      duration: 3600,
       status: "ended" as DuelStatus,
     },
     {
@@ -56,7 +56,7 @@ const Page = () => {
       direction: "up",
       createdPrice: 58600,
       currentPrice: 58910,
-      endTime: "2025-01-05T18:30:00Z",
+      duration: 3600,
       status: "active" as DuelStatus,
     },
     {
@@ -65,7 +65,16 @@ const Page = () => {
       direction: "up",
       createdPrice: 58600,
       currentPrice: 58910,
-      endTime: "2025-01-05T18:30:00Z",
+      duration: 3600,
+      status: "active" as DuelStatus,
+    },
+    {
+      asset: "BTC",
+      assetIcon: Bitcoin,
+      direction: "down",
+      createdPrice: 58600,
+      currentPrice: 58910,
+      duration: 3600,
       status: "active" as DuelStatus,
     },
     {
@@ -74,16 +83,7 @@ const Page = () => {
       direction: "up",
       createdPrice: 58600,
       currentPrice: 58910,
-      endTime: "2025-01-05T18:30:00Z",
-      status: "active" as DuelStatus,
-    },
-    {
-      asset: "BTC",
-      assetIcon: Bitcoin,
-      direction: "up",
-      createdPrice: 58600,
-      currentPrice: 58910,
-      endTime: "2025-01-05T18:30:00Z",
+      duration: 0,
       status: "ended" as DuelStatus,
     },
     {
@@ -92,7 +92,7 @@ const Page = () => {
       direction: "up",
       createdPrice: 58600,
       currentPrice: 58910,
-      endTime: "2025-01-05T18:30:00Z",
+      duration: 4000,
       status: "active" as DuelStatus,
     },
     {
@@ -101,19 +101,25 @@ const Page = () => {
       direction: "up",
       createdPrice: 58600,
       currentPrice: 58910,
-      endTime: "2025-01-05T18:30:00Z",
+      duration: 0,
       status: "ended" as DuelStatus,
     },
   ];
-
+  const [duels, setDuels] = useState<DuelCardProps[]>(initialDuels);
   // ✅ Filter by tab
   const filteredDuels = duels.filter((duel) => duel.status === activeTab);
+
+  const handleFinalize = (index: number) => {
+    setDuels((prev) =>
+      prev.map((d, i) => (i === index ? { ...d, status: "finalized" } : d))
+    );
+  };
 
   return (
     <div className="bg-HeroBg bg-cover min-h-screen">
       <div className="container py-32">
         {/* Tabs */}
-        <div className="flex gap-2 justify-between w-[415px] mx-auto border-2 border-[#36363699] rounded-[10px] bg-[#1C1C1C] p-2 text-center">
+        <div className="flex gap-2 justify-between md:w-[415px] mx-auto border-2 border-[#36363699] rounded-[10px] bg-[#1C1C1C] p-2 text-sm md:text-base text-center font-bold font-Manrope">
           <div
             className={tabClass("active")}
             onClick={() => setActiveTab("active")}
@@ -137,13 +143,13 @@ const Page = () => {
         </div>
 
         {/* Heading */}
-        <h1 className="pb-5 font-Sora font-semibold text-[40px] text-white mt-10">
+        <h1 className="pb-5 font-Sora font-semibold text-center md:text-left text-xl md:text-[40px] text-white mt-10">
           {activeTab.charAt(0).toUpperCase() + activeTab.slice(1)}{" "}
           <span className="text-[#F7CA15]">Duels</span>
         </h1>
 
         {/* Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 ">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 ">
           {filteredDuels.length > 0 ? (
             filteredDuels.map((duel, index) => (
               <DuelCard
@@ -155,7 +161,7 @@ const Page = () => {
                 onParticipate={() => {
                   setOpenParticipateModal(true);
                 }}
-                onFinalize={() => console.log("Finalize")}
+                onFinalize={() => handleFinalize(index)}
               />
             ))
           ) : (

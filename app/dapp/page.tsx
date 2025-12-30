@@ -16,7 +16,7 @@ const Page = () => {
               Join Existing Duels
             </button>
             <Link href={"/dapp/duel-creation"}>
-              <button className="px-8 py-2 md:px-8 md:py-3 bg-[#F7CA15] rounded-[10px] font-Manrope font-bold text-base">
+              <button className="w-full px-8 py-2 md:px-8 md:py-3 bg-[#F7CA15] rounded-[10px] font-Manrope font-bold text-base">
                 Create a Duel
               </button>
             </Link>
