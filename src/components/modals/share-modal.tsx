@@ -1,5 +1,6 @@
 import React from "react";
 import { FaLink } from "react-icons/fa";
+import Link from "next/link";
 
 const ShareModal = ({ onClose }: { onClose: () => void }) => {
   return (
@@ -14,16 +15,21 @@ const ShareModal = ({ onClose }: { onClose: () => void }) => {
         <h1 className="font-Sora font-semibold text-xl md;text-[40px] text-center">
           Share <span className="text-[#F7CA15]">Duel</span>
         </h1>
-        <div className="border border-[#F7CA15] font-Manrope font-semibold text-base md:text-xl text-center rounded-[10px] p-2 md:p-5">
-          DegenDuel.com
-          <span className="text-[#FFFFFF80]"> /active/320177221 </span>
-        </div>
+        <Link href={"/dapp/share-duel"}>
+          <div className="border border-[#F7CA15] font-Manrope font-semibold text-base md:text-xl text-center rounded-[10px] p-2 md:p-5">
+            DegenDuel.com
+            <span className="text-[#FFFFFF80]"> /active/320177221 </span>
+          </div>
+        </Link>
         <div className="flex flex-col md:flex-row gap-5">
-          <button  onClick={onClose} className="flex-1 border border-[#FFFFFF33] p-2 md:p-4 font-Manrope font-semibold text-base text-center rounded-lg">
+          <button
+            onClick={onClose}
+            className="flex-1 border border-[#FFFFFF33] p-2 md:p-4 font-Manrope font-semibold text-base text-center rounded-lg"
+          >
             Cancel
           </button>
           <button className="flex-1 flex gap-2 items-center justify-center bg-[#F7CA15] p-2 md:p-4 font-Manrope font-bold text-base text-center rounded-lg text-[#161616]">
-          <FaLink /> Copy Link
+            <FaLink /> Copy Link
           </button>
         </div>
       </div>

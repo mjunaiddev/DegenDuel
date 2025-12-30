@@ -25,6 +25,13 @@ const ParticipateModal: React.FC<ParticipateModalProps> = ({
   const [duel, setDuel] = useState("");
 
   const isFor = side === "for";
+  const blockInvalidNumberInput = (
+    e: React.KeyboardEvent<HTMLInputElement>
+  ) => {
+    if (["e", "E", "+", "-"].includes(e.key)) {
+      e.preventDefault();
+    }
+  };
 
   return (
     <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50">
@@ -82,8 +89,9 @@ const ParticipateModal: React.FC<ParticipateModalProps> = ({
             step="0.01"
             value={usdt}
             onChange={(e) => setUsdt(e.target.value)}
+            onKeyDown={blockInvalidNumberInput}
             placeholder="0.00 USDT"
-            className="w-full bg-transparent border border-[#FFFFFF33] rounded-md p-4 text-sm text-[#FFFFFF80]"
+            className="w-full bg-transparent border border-[#FFFFFF33] rounded-md p-4 text-sm text-white"
           />
           <Image
             src={USDT}
@@ -105,8 +113,9 @@ const ParticipateModal: React.FC<ParticipateModalProps> = ({
             step="0.01"
             value={duel}
             onChange={(e) => setDuel(e.target.value)}
+            onKeyDown={blockInvalidNumberInput}
             placeholder="0.00 DUEL"
-            className="w-full bg-transparent border border-[#FFFFFF33] rounded-md p-4 text-sm text-[#FFFFFF80]"
+            className="w-full bg-transparent border border-[#FFFFFF33] rounded-md p-4 text-sm text-white appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
           />
           <Image
             src={DuelLogo}

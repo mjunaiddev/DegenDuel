@@ -19,18 +19,62 @@ const Page = () => {
 
   const [direction, setDirection] = useState<"up" | "down" | null>(null);
   const [vote, setVote] = useState<"for" | "against" | null>(null);
-  const [prediction, setPrediction] = useState(2);
-  const [duration, setDuration] = useState(30);
+  const [prediction, setPrediction] = useState(0);
+
+  const [targetTime, setTargetTime] = useState("");
+  const [duration, setDuration] = useState<number | null>(null);
 
   const [participate, setParticipate] = useState<boolean>(false);
-  const [stake, setStake] = useState<number|string>("");
+  const [stake, setStake] = useState<number | string>("");
   const [duelAmount, setDuelAmount] = useState("");
+
+  // ⏱️ Calculate min selectable time (now + 10 minutes)
+  const getMinTime = () => {
+    const d = new Date();
+    d.setMinutes(d.getMinutes() + 10);
+    return d.toTimeString().slice(0, 5);
+  };
+
+  const formatDuration = (totalMinutes: number) => {
+    if (totalMinutes < 60) return `${totalMinutes} mins`;
+
+    const hours = Math.floor(totalMinutes / 60);
+    const minutes = totalMinutes % 60;
+
+    return minutes === 0 ? `${hours} hr` : `${hours} hr ${minutes} mins`;
+  };
+
+  // ⏱️ Handle time selection
+  const handleTimeChange = (value: string) => {
+    const now = new Date();
+    const [hours, minutes] = value.split(":").map(Number);
+
+    const selected = new Date();
+    selected.setHours(hours, minutes, 0, 0);
+
+    const diffMinutes = Math.floor(
+      (selected.getTime() - now.getTime()) / 60000
+    );
+
+    if (diffMinutes >= 10) {
+      setTargetTime(value);
+      setDuration(diffMinutes);
+    }
+  };
+
+  const blockInvalidNumberInput = (
+    e: React.KeyboardEvent<HTMLInputElement>
+  ) => {
+    if (["e", "E", "+", "-"].includes(e.key)) {
+      e.preventDefault();
+    }
+  };
 
   const formValid =
     crypto &&
     direction &&
     prediction > 0 &&
-    duration > 0 &&
+    duration !== null &&
     participate &&
     vote &&
     stake &&
@@ -111,7 +155,8 @@ const Page = () => {
                     : "text-[#02BA4580]"
                 }`}
               >
-                Up <MdOutlineKeyboardDoubleArrowUp className="text-2xl md:text-4xl" />
+                Up{" "}
+                <MdOutlineKeyboardDoubleArrowUp className="text-2xl md:text-4xl" />
               </button>
 
               <button
@@ -123,7 +168,8 @@ const Page = () => {
                     : "text-[#CF373980]"
                 }`}
               >
-                Down <MdOutlineKeyboardDoubleArrowDown className="text-2xl md:text-4xl" />
+                Down{" "}
+                <MdOutlineKeyboardDoubleArrowDown className="text-2xl md:text-4xl" />
               </button>
             </div>
           </div>
@@ -137,9 +183,10 @@ const Page = () => {
               <div className="relative">
                 <input
                   type="number"
+                  placeholder="2"
                   value={prediction}
                   onChange={(e) => setPrediction(+e.target.value)}
-                  className="w-full bg-transparent border border-[#FFFFFF33] rounded-[10px] p-2 md:p-5 font-Manrope font-semibold text-base md:text-xl text-[#FFFFFF80] appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                  className="w-full bg-transparent border border-[#FFFFFF33] rounded-[10px] p-2 md:p-5 font-Manrope font-semibold text-base md:text-xl text-white appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
                 />
                 <div className="absolute right-3 top-1/2 -translate-y-1/2 flex flex-col gap-1">
                   <button
@@ -165,25 +212,17 @@ const Page = () => {
               </label>
               <div className="relative">
                 <input
-                  type="text"
-                  value={`${duration} Minutes`}
-                  readOnly
-                  className="w-full bg-transparent border border-[#FFFFFF33] rounded-[10px] p-2 md:p-5 font-Manrope font-semibold text-base md:text-xl text-[#FFFFFF80]"
+                  type="time"
+                  min={getMinTime()}
+                  value={targetTime}
+                  onChange={(e) => handleTimeChange(e.target.value)}
+                  className="w-full bg-transparent border border-[#FFFFFF33] rounded-[10px] p-2 md:p-5 font-Manrope font-semibold text-base md:text-xl text-white"
                 />
-                <div className="absolute right-3 top-1/2 -translate-y-1/2 flex flex-col gap-1">
-                  <button
-                    type="button"
-                    onClick={() => setDuration((d) => d + 5)}
-                  >
-                    <FiChevronUp className="rounded-md md:w-6 md:h-6 bg-[#FFFFFF1A] text-white" />
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setDuration((d) => Math.max(5, d - 5))}
-                  >
-                    <FiChevronDown className="rounded-md md:w-6 md:h-6 bg-[#FFFFFF1A] text-white" />
-                  </button>
-                </div>
+                {duration !== null && (
+                  <span className="text-sm text-[#F7CA15]">
+                    Duration: {formatDuration(duration)}
+                  </span>
+                )}
               </div>
             </div>
           </div>
@@ -215,7 +254,8 @@ const Page = () => {
                         : "text-[#02BA4580]"
                     }`}
                   >
-                    For <MdOutlineKeyboardDoubleArrowUp className="text-2xl md:text-4xl" />
+                    For{" "}
+                    <MdOutlineKeyboardDoubleArrowUp className="text-2xl md:text-4xl" />
                   </button>
 
                   <button
@@ -245,7 +285,8 @@ const Page = () => {
                       placeholder="0.00 USDT"
                       value={stake}
                       onChange={(e) => setStake(e.target.value)}
-                      className="w-full bg-transparent border border-[#FFFFFF33] rounded-[10px] p-5 font-Manrope font-semibold text-base md:text-xl text-[#FFFFFF80] appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                      onKeyDown={blockInvalidNumberInput}
+                      className="w-full bg-transparent border border-[#FFFFFF33] rounded-[10px] p-5 font-Manrope font-semibold text-base md:text-xl text-white appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
                     />
                     <div className="absolute right-3 top-1/2 -translate-y-1/2 ">
                       <Image src={StakeLogo} alt="duel logo" />
@@ -265,7 +306,8 @@ const Page = () => {
                       placeholder="0.00 DUEL"
                       value={duelAmount}
                       onChange={(e) => setDuelAmount(e.target.value)}
-                      className="w-full bg-transparent border border-[#FFFFFF33] rounded-[10px] p-5 font-Manrope font-semibold text-base md:text-xl text-[#FFFFFF80] appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                      onKeyDown={blockInvalidNumberInput}
+                      className="w-full bg-transparent border border-[#FFFFFF33] rounded-[10px] p-5 font-Manrope font-semibold text-base md:text-xl text-white appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
                     />
                     <div className="absolute right-3 top-1/2 -translate-y-1/2 ">
                       <Image src={DuelLogo} alt="duel logo" />
